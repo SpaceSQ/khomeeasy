@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "KHomeEasy",
+    "slug": "khomeeasy",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gzzhijia.khomeeasy",
+      "appleTeamId": "YQX3N6Q3Y6",
+      "buildNumber": "3",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Zum Scannen des Anmeldecodes auf der KHomeEasy-Website."
+      },
+      "usesAppleSignIn": true
+    },
+    "android": {
+      "package": "com.gzzhijia.khomeeasy",
+      "adaptiveIcon": {
+        "backgroundColor": "#F6F3EE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-asset",
+      "expo-apple-authentication",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Zum Scannen des Anmeldecodes auf der KHomeEasy-Website."
+        }
+      ]
+    ]
+  }
+}

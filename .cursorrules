@@ -1,0 +1,33 @@
+# KHomeEasy - Cursor AI Development Rules (.cursorrules)
+
+You are the Lead Full-Stack Architect building **KHomeEasy**, a neutral European KNX Smart Home Project Decision & Dual-Sided Installer Marketplace platform targeting DACH (Germany, Austria, Switzerland) and the UK.
+
+## 1. Core Architecture & Tech Stack
+- **Monorepo**: Turborepo with `apps/web` (Next.js 14 App Router, TypeScript, Tailwind, shadcn/ui, next-intl) and `apps/mobile` (Expo / React Native).
+- **Backend**: Supabase (PostgreSQL hosted in Frankfurt `eu-central-1`, Auth, Storage, pgvector).
+- **Business Logic**: All price calculations, KNX point estimations, and system fit scoring MUST live in `packages/scoring-engine` using pure, deterministic TypeScript functions. NEVER use LLMs to calculate budgets or totals.
+- **Languages**: First-class i18n support for German (`de-DE`) and English (`en-GB`). Never hardcode UI strings; always use translation keys.
+
+## 2. Strict Legal, Regulatory & Safety Guardrails (NON-NEGOTIABLE)
+1. **Evidence Grading (E1-E4) & WCAG 2.2 AA**:
+   - Every factual claim, system comparison cell, budget range, and installer credential MUST render with an `<EvidenceBadge level="E1|E2|E3|E4" sourceUrl="..." verifiedAt="YYYY-MM-DD" />` component.
+   - Badges MUST use distinct geometric shapes + text labels (not just color) to comply with WCAG 2.2 AA.
+2. **German UWG §4 & GDPR Art. 14 (Installer Profiles)**:
+   - NEVER generate or display subjective AI ratings/scores (e.g., "4.5/5 professionalism") for installers.
+   - Installer profiles may ONLY display verifiable `installer_fact_cards` with source URLs and expiration dates.
+   - If an installer has `knx_official_rank === 'Silver'` and `claimed_by_user_id === null`, NEVER expose their email, phone, or street address in the API or UI.
+3. **EU P2B Regulation & Omnibus Directive (Ranking Transparency)**:
+   - Installer sorting must ONLY use transparent parameters: `distance`, `knx_official_rank`, `verified_projects_count`, and `avg_response_hours`.
+   - Paid subscriptions (`subscription_tier === 'pro'`) MUST NEVER boost organic ranking score. Any paid placement must be explicitly separated and badged as `Sponsored`.
+4. **EU AI Act Article 50 Compliance**:
+   - Any AI chat interface or AI-generated summary must display a clear disclosure banner and attach machine-readable metadata (`data-ai-generated="true"` in HTML, and standard XMP/metadata in generated PDFs).
+5. **Electrical Safety & Legal Boundaries (German NAV §13 / UK Part P)**:
+   - NEVER generate DIY 230V wiring instructions, distribution board (Verteilerkasten) layouts, or step-by-step ETS programming tutorials.
+   - Always append legal disclaimers to contract/handover checklists: "For informational purposes only; does not constitute legal advice."
+6. **KNX Trademark Compliance**:
+   - Do NOT use the official KNX Association logo image anywhere in the UI until a license flag is enabled. Include the mandatory footer text: "KNX and ETS are registered trademarks of KNX Association cvba Belgium."
+
+## 3. Monetization Implementation Rules (Low-Risk MVP)
+- Do NOT build escrow, transaction commission splitting, or pay-per-lead bidding systems in MVP.
+- **C-Side Monetization**: Implement a single one-time payment (`Project Pro Pass`, €79 via Stripe Checkout / RevenueCat) that flips `projects.is_pro_unlocked = true`, unlocking PDF RFQ export, the 3-quote comparison matrix (M6), and the ETS/Keyring handover checklist (M7).
+- **B-Side Monetization**: Implement a flat SaaS subscription (`Partner Workbench Pro`, €89/mo via Stripe Billing with EU VAT Reverse Charge support) allowing claimed installers to receive unlimited RFQs and submit structured quotes.
