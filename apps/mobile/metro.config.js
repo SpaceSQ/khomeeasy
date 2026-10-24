@@ -8,6 +8,7 @@ const config = getDefaultConfig(projectRoot);
 
 config.watchFolders = [
   path.resolve(workspaceRoot, 'packages/scoring-engine'),
+  path.resolve(workspaceRoot, 'packages/shared-types'),
   path.resolve(workspaceRoot, 'apps/web/messages')
 ];
 

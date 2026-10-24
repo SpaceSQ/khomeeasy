@@ -10,10 +10,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.gzzhijia.khomeeasy",
       "appleTeamId": "YQX3N6Q3Y6",
-      "buildNumber": "8",
-      "infoPlist": {
-        "NSCameraUsageDescription": "Zum Scannen des Anmeldecodes auf der KHomeEasy-Website."
-      },
+      "buildNumber": "10",
       "usesAppleSignIn": true
     },
     "android": {
@@ -32,12 +29,8 @@
     "plugins": [
       "expo-asset",
       "expo-apple-authentication",
-      [
-        "expo-camera",
-        {
-          "cameraPermission": "Zum Scannen des Anmeldecodes auf der KHomeEasy-Website."
-        }
-      ]
+      "expo-iap",
+      "./plugins/with-in-app-purchase.js"
     ]
   }
 }

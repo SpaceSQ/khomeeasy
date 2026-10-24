@@ -177,14 +177,12 @@ export function AccountScreen({
   locale,
   initialRole,
   t,
-  onOpenHelp,
-  onScan
+  onOpenHelp
 }: {
   locale: LocaleChoice;
   initialRole: AccountRole;
   t: Lookup;
   onOpenHelp: () => void;
-  onScan: (role: AccountRole) => void;
 }) {
   const [role, setRole] = useState<AccountRole>(initialRole);
   const [draft, setDraft] = useState<Draft>(emptyDraft(initialRole));
@@ -535,9 +533,6 @@ export function AccountScreen({
           <Text style={styles.primaryText}>{t('Account.save')}</Text>
         </Pressable>
       ) : null}
-      <Pressable accessibilityRole="button" style={styles.secondary} onPress={() => onScan(role)}>
-        <Text style={styles.secondaryText}>{t('Account.scan')}</Text>
-      </Pressable>
       {messageKey ? <Text style={styles.body}>{t(messageKey)}</Text> : null}
       {matchText ? <Text style={styles.body}>{t('Account.matchTitle')}. {matchText}</Text> : null}
       {matches.map((item) => (

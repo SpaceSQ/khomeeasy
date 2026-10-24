@@ -3,11 +3,13 @@ import { Alert, Platform, Pressable, StyleSheet, Text, View } from 'react-native
 import * as AppleAuthentication from 'expo-apple-authentication';
 import { ModuleHelpLink } from './HelpScreen';
 import { PricingTables } from './PricingTables';
+import { PurchasePanel } from './PurchasePanel';
 import {
   loadDesigns,
   saveSession,
   signOutApple,
   type AppleSession,
+  type AccountRole,
   type LocaleChoice
 } from './storage';
 
@@ -20,6 +22,7 @@ function displayName(session: AppleSession, fallback: string): string {
 
 export function SettingsScreen({
   locale,
+  role,
   session,
   t,
   onOpenHelp,
@@ -29,6 +32,7 @@ export function SettingsScreen({
   onDelete
 }: {
   locale: LocaleChoice;
+  role: AccountRole;
   session: AppleSession | null;
   t: Lookup;
   onOpenHelp: () => void;
@@ -139,6 +143,7 @@ export function SettingsScreen({
       </Pressable>
       <Text style={styles.body}>{t('Settings.deleteBody')}</Text>
       <Text style={styles.heading}>{t('Help.topics.pricing')}</Text>
+      <PurchasePanel role={role} locale={locale} t={t} />
       <Text style={styles.body}>{t('Help.settingsLede')}</Text>
       <PricingTables locale={locale} t={t} />
       <ModuleHelpLink label={t('Help.openHelp')} onPress={onOpenHelp} />

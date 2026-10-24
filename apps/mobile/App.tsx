@@ -15,7 +15,7 @@ import { AccountScreen } from './src/AccountScreen';
 import { LaunchSplash } from './src/LaunchSplash';
 import { HelpScreen, ModuleHelpLink } from './src/HelpScreen';
 import { InterviewScreen } from './src/InterviewScreen';
-import { ScanScreen } from './src/ScanScreen';
+import { PurchasePanel } from './src/PurchasePanel';
 import type { AccountRole } from './src/storage';
 import { SettingsScreen } from './src/SettingsScreen';
 import {
@@ -250,7 +250,7 @@ const pathStages = [
 export default function App() {
   const [splashDone, setSplashDone] = useState(false);
   const [locale, setLocale] = useState<Locale>('de');
-  const [screen, setScreen] = useState<'guide' | 'examples' | 'settings' | 'interview' | 'account' | 'scan' | 'help'>('guide');
+  const [screen, setScreen] = useState<'guide' | 'examples' | 'settings' | 'interview' | 'account' | 'help'>('guide');
   const [helpTopic, setHelpTopic] = useState('toc');
   const [accountRole, setAccountRole] = useState<AccountRole>('homeowner');
   const [settingsReady, setSettingsReady] = useState(false);
@@ -349,10 +349,6 @@ export default function App() {
       </View>
       {screen === 'help' ? (
         <HelpScreen locale={locale} topic={helpTopic} t={t} onJump={setHelpTopic} />
-      ) : screen === 'scan' ? (
-        <View style={styles.scanPage}>
-          <ScanScreen role={accountRole} t={t} onOpenHelp={() => openHelp('account')} />
-        </View>
       ) : (
       <ScrollView contentContainerStyle={styles.scroll}>
         {screen === 'account' ? (
@@ -361,16 +357,13 @@ export default function App() {
             initialRole={accountRole}
             t={t}
             onOpenHelp={() => openHelp('account')}
-            onScan={(role) => {
-              setAccountRole(role);
-              setScreen('scan');
-            }}
           />
         ) : screen === 'interview' ? (
-          <InterviewScreen t={t} onOpenHelp={() => openHelp('fit')} />
+          <InterviewScreen locale={locale} t={t} onOpenHelp={() => openHelp('fit')} />
         ) : screen === 'settings' ? (
           <SettingsScreen
             locale={locale}
+            role={accountRole}
             session={session}
             t={t}
             onOpenHelp={() => openHelp('toc')}
@@ -424,6 +417,7 @@ export default function App() {
                 <Pressable accessibilityRole="button" style={styles.primary} onPress={() => setScreen('account')}>
                   <Text style={styles.primaryText}>{t('Home.installerOpen')}</Text>
                 </Pressable>
+                <PurchasePanel role="installer" locale={locale} t={t} />
               </View>
             ) : (
               <Pressable accessibilityRole="button" style={styles.primary} onPress={() => setScreen('interview')}>
@@ -527,7 +521,6 @@ const styles = StyleSheet.create({
   localeOffText: { color: ink, fontWeight: '600', textDecorationLine: 'underline' },
   navText: { color: ink, fontWeight: '700', textDecorationLine: 'underline', fontSize: 16 },
   scroll: { padding: 20, gap: 16, paddingBottom: 40 },
-  scanPage: { flex: 1, padding: 20, paddingBottom: 24 },
   eyebrow: { color: '#6B4423', fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase', fontSize: 12 },
   title: { fontSize: 28, fontWeight: '600', color: ink },
   body: { fontSize: 16, lineHeight: 24, color: muted },

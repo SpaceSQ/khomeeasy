@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AccountPanel } from '@/components/account/account-panel';
 import { EvidenceBadge } from '@/components/compliance/evidence-badge';
+import { PurchaseReceipts } from '@/components/account/purchase-receipts';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 
 type InstallerFacts = {
@@ -52,12 +53,17 @@ export function ContractorWorkbench({
       return;
     }
     let cancelled = false;
-    supabase
-      .from('profiles')
-      .select('full_name, city, postal_code, house_number, address_line')
-      .eq('id', userId)
-      .maybeSingle()
-      .then(async (profileResult) => {
+    fetch('/api/apple/purchases', { headers: { authorization: `Bearer ${accessToken}` } })
+      .catch(() => undefined)
+      .then(async () => {
+        if (cancelled) {
+          return;
+        }
+        const profileResult = await supabase
+          .from('profiles')
+          .select('full_name, city, postal_code, house_number, address_line')
+          .eq('id', userId)
+          .maybeSingle();
         const profile = profileResult.data as {
           full_name: string | null;
           city: string | null;
@@ -97,10 +103,7 @@ export function ContractorWorkbench({
           setQuotes([]);
           return;
         }
-        const quoteResult = await supabase
-          .from('quotes')
-          .select('id, status, submitted_at')
-          .eq('installer_id', installer.id);
+        const quoteResult = await supabase.from('quotes').select('id, status, submitted_at').eq('installer_id', installer.id);
         if (cancelled) {
           return;
         }
@@ -112,7 +115,7 @@ export function ContractorWorkbench({
         setQuotesUnreadable(false);
         setQuotes((quoteResult.data as QuoteRow[] | null) ?? []);
       })
-      .then(() => undefined, () => {
+      .catch(() => {
         if (!cancelled) {
           setQuotesUnreadable(true);
           setQuotes([]);
@@ -121,7 +124,7 @@ export function ContractorWorkbench({
     return () => {
       cancelled = true;
     };
-  }, [email, reload, userId]);
+  }, [accessToken, email, reload, userId]);
 
   const year = new Date().getUTCFullYear();
   const counted = (quotes ?? []).filter((quote) => {
@@ -210,6 +213,7 @@ export function ContractorWorkbench({
         <p className="leading-7">{t('rankNote')}</p>
         <p className="leading-7">{help('paymentBody')}</p>
         <EvidenceBadge level="E4" sourceUrl={help('priceSource')} verifiedAt={help('priceVerified')} />
+        <PurchaseReceipts accessToken={accessToken} />
       </section>
     </div>
   );

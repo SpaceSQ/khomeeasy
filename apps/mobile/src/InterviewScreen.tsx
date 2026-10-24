@@ -13,6 +13,7 @@ import {
   type Priority
 } from '@khomeeasy/scoring-engine';
 import { ModuleHelpLink } from './HelpScreen';
+import { PurchasePanel } from './PurchasePanel';
 import { saveDesign } from './storage';
 
 type Lookup = (path: string) => string;
@@ -44,7 +45,15 @@ function stepSlot(step: GuideStep): string | null {
   return null;
 }
 
-export function InterviewScreen({ t, onOpenHelp }: { t: Lookup; onOpenHelp: () => void }) {
+export function InterviewScreen({
+  locale,
+  t,
+  onOpenHelp
+}: {
+  locale: 'de' | 'en';
+  t: Lookup;
+  onOpenHelp: () => void;
+}) {
   const [description, setDescription] = useState('');
   const [started, setStarted] = useState(false);
   const [brief, setBrief] = useState<HouseBrief | null>(null);
@@ -278,6 +287,19 @@ export function InterviewScreen({ t, onOpenHelp }: { t: Lookup; onOpenHelp: () =
             <Text style={styles.primaryText}>{t('Guide.save')}</Text>
           </Pressable>
           {saved ? <Text style={styles.body}>{t('Guide.saved')}</Text> : null}
+          <PurchasePanel
+            role="homeowner"
+            locale={locale}
+            t={t}
+            designTitle={brief.description.trim().slice(0, 80) || t('Purchase.defaultProjectTitle')}
+            buildType={brief.build}
+            constructionPhase={brief.phase}
+            areaSqm={brief.areaSqm}
+            onBeforePurchase={() => {
+              const title = brief.description.trim().slice(0, 80) || t('Purchase.defaultProjectTitle');
+              return saveDesign({ title, brief }).then(() => setSaved(true));
+            }}
+          />
         </View>
       ) : null}
       <ModuleHelpLink label={t('Help.moduleLink')} onPress={onOpenHelp} />

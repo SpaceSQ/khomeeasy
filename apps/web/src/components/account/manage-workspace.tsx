@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { AccountPanel } from '@/components/account/account-panel';
 import { ContractorWorkbench } from '@/components/account/contractor-workbench';
 import { InterviewPanel } from '@/components/guide/interview-panel';
+import { PurchaseReceipts } from '@/components/account/purchase-receipts';
 import { Link, useRouter } from '@/i18n/navigation';
 import { workspaceForRole, type WorkspaceKind } from '@/lib/workspace';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
@@ -147,12 +148,12 @@ export function ManageWorkspace() {
           }}
         />
       ) : null}
-      {workspace === 'owner' && section === 'files' ? <PaidFiles projects={projects} /> : null}
+      {workspace === 'owner' && section === 'files' ? <PaidFiles projects={projects} accessToken={accessToken} /> : null}
     </div>
   );
 }
 
-function PaidFiles({ projects }: { projects: ProjectRow[] }) {
+function PaidFiles({ projects, accessToken }: { projects: ProjectRow[]; accessToken: string }) {
   const t = useTranslations('Login');
   const help = useTranslations('Help');
   const unlocked = projects.filter((project) => project.is_pro_unlocked === true);
@@ -170,6 +171,7 @@ function PaidFiles({ projects }: { projects: ProjectRow[] }) {
           </li>
         ))}
       </ul>
+      <PurchaseReceipts accessToken={accessToken} />
     </section>
   );
 }

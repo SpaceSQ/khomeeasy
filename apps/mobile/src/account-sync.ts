@@ -55,7 +55,7 @@ export async function writeAccountProfile(
   return !inserted.error && inserted.data?.role === input.role;
 }
 
-/** The website approves a scan only when profiles.role matches the QR role. */
+/** profiles.role must match the account role chosen on this phone. */
 export async function ensureAccountRole(
   supabase: SupabaseClient,
   userId: string,

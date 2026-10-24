@@ -6,7 +6,6 @@ import { isAppLocale } from '@/i18n/locale';
 import { Link } from '@/i18n/navigation';
 import { getSupabaseServerClient } from '@/lib/supabase/server';
 import { EmailSignIn } from '@/components/account/email-sign-in';
-import { LoginPanel } from './login-panel';
 
 export async function generateMetadata({
   params
@@ -31,9 +30,8 @@ export default async function LoginPage({ params }: { params: { locale: string }
         <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brass">{t('eyebrow')}</p>
         <h1 className="mt-3 max-w-3xl font-serif text-4xl font-semibold tracking-tight">{t('title')}</h1>
         <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">{t('lede')}</p>
-        <div className="mt-8 flex flex-col gap-12">
+        <div className="mt-8">
           <EmailSignIn />
-          <LoginPanel />
         </div>
         <p className="mt-8">
           <Link href="/help#account" className="inline-flex min-h-11 items-center font-semibold underline decoration-ink/30 underline-offset-4">
