@@ -372,6 +372,7 @@ export default function App() {
             session={session}
             t={t}
             onOpenHelp={() => openHelp('toc')}
+            onOpenAccount={() => setScreen('account')}
             onSession={setSession}
             onSignedOut={() => setSession(null)}
             onDelete={() => {

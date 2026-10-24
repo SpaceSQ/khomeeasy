@@ -32,7 +32,10 @@ export function EmailSignIn() {
     });
     setPending(false);
     if (error) {
-      setMessage(t('emailFailed'));
+      const code = (error.code ?? '').toLowerCase();
+      const detail = error.message.toLowerCase();
+      const unconfirmed = code === 'email_not_confirmed' || detail.includes('email not confirmed');
+      setMessage(t(unconfirmed ? 'emailUnconfirmed' : 'emailFailed'));
       return;
     }
     router.push('/manage');

@@ -5,7 +5,8 @@ export const storageKeys = {
   settings: 'khomeeasy.settings',
   designs: 'khomeeasy.designs',
   hiddenExamples: 'khomeeasy.hidden-example-ids',
-  account: 'khomeeasy.account'
+  account: 'khomeeasy.account',
+  pendingEmail: 'khomeeasy.pending-email'
 } as const;
 
 export type LocaleChoice = 'de' | 'en';
@@ -90,6 +91,19 @@ export async function signOutApple(): Promise<void> {
   await AsyncStorage.removeItem(storageKeys.session);
 }
 
+export async function loadPendingEmail(): Promise<string | null> {
+  const value = await AsyncStorage.getItem(storageKeys.pendingEmail);
+  return value && value.includes('@') ? value : null;
+}
+
+export async function savePendingEmail(email: string): Promise<void> {
+  await AsyncStorage.setItem(storageKeys.pendingEmail, email.trim());
+}
+
+export async function clearPendingEmail(): Promise<void> {
+  await AsyncStorage.removeItem(storageKeys.pendingEmail);
+}
+
 /** Removes the Apple session and every record this app stored on the device. */
 export async function deleteDeviceData(): Promise<void> {
   await AsyncStorage.multiRemove([
@@ -97,6 +111,7 @@ export async function deleteDeviceData(): Promise<void> {
     storageKeys.settings,
     storageKeys.designs,
     storageKeys.hiddenExamples,
-    storageKeys.account
+    storageKeys.account,
+    storageKeys.pendingEmail
   ]);
 }

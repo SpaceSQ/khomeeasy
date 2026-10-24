@@ -23,6 +23,7 @@ export function SettingsScreen({
   session,
   t,
   onOpenHelp,
+  onOpenAccount,
   onSession,
   onSignedOut,
   onDelete
@@ -31,6 +32,7 @@ export function SettingsScreen({
   session: AppleSession | null;
   t: Lookup;
   onOpenHelp: () => void;
+  onOpenAccount: () => void;
   onSession: (session: AppleSession) => void;
   onSignedOut: () => void;
   onDelete: () => void;
@@ -124,6 +126,11 @@ export function SettingsScreen({
         <Text style={styles.buttonText}>{t('Settings.logout')}</Text>
       </Pressable>
       <Text style={styles.body}>{t('Settings.logoutBody')}</Text>
+
+      <Text style={styles.heading}>{t('Account.title')}</Text>
+      <Pressable accessibilityRole="button" style={styles.button} onPress={onOpenAccount}>
+        <Text style={styles.buttonText}>{t('Account.profileTitle')}</Text>
+      </Pressable>
 
       <Text style={styles.heading}>{t('Settings.designHeading')}</Text>
       <Text style={styles.body}>{countLabel}</Text>
