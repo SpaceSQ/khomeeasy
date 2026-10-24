@@ -49,8 +49,15 @@ export function LoginPanel() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: payload.id, secret: payload.secret })
         });
-        const body = (await response.json().catch(() => null)) as { status?: string; tokenHash?: string } | null;
-        if (!body || stopped) {
+        const body = (await response.json().catch(() => null)) as { status?: string; tokenHash?: string; error?: string } | null;
+        if (stopped) {
+          return;
+        }
+        if (!response.ok || !body || body.error) {
+          setStatus('error');
+          if (timer) {
+            clearInterval(timer);
+          }
           return;
         }
         if (body.status === 'expired' || body.status === 'consumed') {
@@ -100,22 +107,21 @@ export function LoginPanel() {
     <div className="mx-auto flex max-w-xl flex-col gap-6">
       <h2 className="font-serif text-2xl font-semibold">{t('scanTitle')}</h2>
       <div className="flex flex-col gap-3">
-        <button
-          type="button"
-          className="min-h-14 rounded-lg border border-ink bg-ink px-4 py-3 text-left text-base font-semibold text-paper"
-          onClick={() => setRole('homeowner')}
-          aria-pressed={role === 'homeowner'}
-        >
-          {t('owner')}
-        </button>
-        <button
-          type="button"
-          className="min-h-14 rounded-lg border border-ink px-4 py-3 text-left text-base font-semibold"
-          onClick={() => setRole('installer')}
-          aria-pressed={role === 'installer'}
-        >
-          {t('installer')}
-        </button>
+        {(['homeowner', 'installer'] as const).map((item) => (
+          <button
+            key={item}
+            type="button"
+            className={
+              role === item
+                ? 'min-h-14 rounded-lg border border-ink bg-ink px-4 py-3 text-left text-base font-semibold text-paper'
+                : 'min-h-14 rounded-lg border border-ink px-4 py-3 text-left text-base font-semibold'
+            }
+            onClick={() => setRole(item)}
+            aria-pressed={role === item}
+          >
+            {item === 'homeowner' ? t('owner') : t('installer')}
+          </button>
+        ))}
       </div>
       <p className="leading-7 text-muted">{role === 'homeowner' ? t('ownerHelp') : t('installerHelp')}</p>
       {image ? (

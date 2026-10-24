@@ -349,11 +349,13 @@ export default function App() {
       </View>
       {screen === 'help' ? (
         <HelpScreen locale={locale} topic={helpTopic} t={t} onJump={setHelpTopic} />
+      ) : screen === 'scan' ? (
+        <View style={styles.scanPage}>
+          <ScanScreen role={accountRole} t={t} onOpenHelp={() => openHelp('account')} />
+        </View>
       ) : (
       <ScrollView contentContainerStyle={styles.scroll}>
-        {screen === 'scan' ? (
-          <ScanScreen role={accountRole} t={t} onOpenHelp={() => openHelp('account')} />
-        ) : screen === 'account' ? (
+        {screen === 'account' ? (
           <AccountScreen
             locale={locale}
             initialRole={accountRole}
@@ -516,6 +518,7 @@ const styles = StyleSheet.create({
   localeOffText: { color: ink, fontWeight: '600', textDecorationLine: 'underline' },
   navText: { color: ink, fontWeight: '700', textDecorationLine: 'underline', fontSize: 16 },
   scroll: { padding: 20, gap: 16, paddingBottom: 40 },
+  scanPage: { flex: 1, padding: 20, paddingBottom: 24 },
   eyebrow: { color: '#6B4423', fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase', fontSize: 12 },
   title: { fontSize: 28, fontWeight: '600', color: ink },
   body: { fontSize: 16, lineHeight: 24, color: muted },

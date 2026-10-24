@@ -1,7 +1,10 @@
 export type AccountRole = 'homeowner' | 'installer';
 
 export function parsePairPayload(value: string): { role: AccountRole; id: string; secret: string } | null {
-  const parts = value.trim().split(':');
+  const trimmed = value.trim();
+  const marker = 'khomeeasy-pair:v1:';
+  const start = trimmed.indexOf(marker);
+  const parts = (start >= 0 ? trimmed.slice(start) : trimmed).split(':');
   if (parts.length !== 5 || parts[0] !== 'khomeeasy-pair' || parts[1] !== 'v1') {
     return null;
   }

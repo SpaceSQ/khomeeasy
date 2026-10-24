@@ -55,7 +55,7 @@ export function ManageWorkspace() {
   async function signOut() {
     const supabase = getSupabaseBrowserClient();
     if (supabase) {
-      await supabase.auth.signOut();
+      await supabase.auth.signOut({ scope: 'local' });
     }
     router.push('/login');
     router.refresh();
