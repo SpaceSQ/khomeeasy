@@ -36,6 +36,8 @@
     "secondaryCta": "Referenzfälle",
     "pathTitle": "So kommen Sie von der Frage zur Umsetzung.",
     "pathLede": "Die Anlage baut ein eingetragener Elektrofachbetrieb. KHomeEasy macht die Entscheidung und die Anfrage vollständig. Der Weg steht offen auf dieser Seite. Leitungen und ETS-Schritte gibt es hier nicht.",
+    "installerHome": "Dieses Telefon ist als Fachbetrieb angemeldet. Der Fragebogen zum Haus ist für Eigentümer. Ihre Angaben und die Website-Werkbank sind die Startseite dieses Kontos.",
+    "installerOpen": "Angaben des Betriebs öffnen",
     "statusNow": "Diese Seite",
     "statusNext": "Nächster Bildschirm",
     "statusOutside": "Außerhalb der App",
@@ -164,7 +166,32 @@
     "signOut": "Abmelden",
     "sectionGuide": "Haus beschreiben",
     "sectionAccount": "Konto",
-    "paymentOnlyApple": "Freigeschaltete Dateien werden nur durch einen Apple-Kauf auf dem iPhone gesetzt."
+    "paymentOnlyApple": "Freigeschaltete Dateien werden nur durch einen Apple-Kauf auf dem iPhone gesetzt.",
+    "manageLoading": "Das Konto wird geladen.",
+    "installerLede": "Die Werkbank des Fachbetriebs hält die öffentlichen Angaben und die eingehenden Anfragen. Der Fragebogen zum Haus ist für Eigentümer. Die Zahlung bleibt auf dem iPhone.",
+    "roleMissing": "Schließen Sie das Konto ab und wählen Sie Eigentümer oder Fachbetrieb. Diese Seite nimmt nicht an, dass Sie Eigentümer sind."
+  },
+  "Workbench": {
+    "title": "Werkbank des Fachbetriebs",
+    "lede": "Das sind Ihre öffentlichen Betriebsangaben. Eigentümer senden eine Anfrage. Ein kostenloses Konto kann höchstens zwei im Jahr beantworten. Partner Workbench Pro hebt diese Grenze auf und ändert die Reihenfolge nicht.",
+    "loading": "Ihre Angaben werden geladen.",
+    "edit": "Diese Angaben ändern",
+    "closeEdit": "Bearbeiten schließen",
+    "requestsTitle": "Eingehende Anfragen",
+    "requestsEmpty": "Es ist noch keine Anfrage eingegangen.",
+    "requestsUnreadable": "Anfragen konnten nicht gelesen werden. An ihrer Stelle wird nichts erfunden.",
+    "capFree": "Ein kostenloses Konto kann höchstens 2 Anfragen im Jahr strukturiert beantworten. Die Website nimmt die Monatsgebühr nicht ein.",
+    "capPro": "Partner Workbench Pro hat keine Jahresgrenze für Anfragen oder strukturierte Angebote. Die Reihenfolge der Betriebe ändert sich nicht.",
+    "capCount": "{count} von {cap} kostenlosen Antworten in diesem Jahr.",
+    "replyNote": "Eine strukturierte Antwort bleibt in der kostenlosen Jahresgrenze oder ohne Grenze bei Partner Workbench Pro. Diese Seite berechnet keinen Preis.",
+    "rankNote": "Die Reihenfolge nutzt nur Entfernung, offiziellen Rang, geprüfte Projekte und Antwortzeit. Einen höheren Platz kann man nicht kaufen.",
+    "status": {
+      "invited": "Anfrage erhalten",
+      "viewed": "Anfrage geöffnet",
+      "submitted": "Strukturierte Antwort gespeichert",
+      "declined": "Abgelehnt",
+      "other": "Anfrage"
+    }
   },
   "Account": {
     "helpTitle": "So gehören Telefon und Website zusammen",
@@ -212,6 +239,7 @@
     "scanSignedOut": "Dieses Telefon ist abgemeldet. Geben Sie das Passwort ein, sichern Sie, und scannen Sie erneut.",
     "scanExpired": "Dieser Code ist abgelaufen. Wählen Sie auf der Website dieselbe Rolle erneut.",
     "scanOpen": "Scanner öffnen",
+    "scanAgain": "Erneut scannen",
     "scanDone": "Der Browser ist angemeldet.",
     "scanFailed": "Die Anmeldung wurde nicht bestätigt.",
     "camera": "Die Kamera liest nur den Anmeldecode auf der KHomeEasy-Website.",

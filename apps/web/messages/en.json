@@ -36,6 +36,8 @@
     "secondaryCta": "Reference cases",
     "pathTitle": "How you get from the question to the installation.",
     "pathLede": "A registered electrical contractor builds the system. KHomeEasy makes the decision and the request complete. The path is open on this page. Cable routes and ETS steps are not here.",
+    "installerHome": "This phone is signed in as a contractor. The house questionnaire is for owners. Your details and the website workbench are the home for this account.",
+    "installerOpen": "Open contractor details",
     "statusNow": "This page",
     "statusNext": "Next screen",
     "statusOutside": "Outside the app",
@@ -164,7 +166,32 @@
     "signOut": "Sign out",
     "sectionGuide": "Describe the house",
     "sectionAccount": "Account",
-    "paymentOnlyApple": "Unlocked files are set only by an Apple purchase on the iPhone."
+    "paymentOnlyApple": "Unlocked files are set only by an Apple purchase on the iPhone.",
+    "manageLoading": "Loading the account.",
+    "installerLede": "The contractor workbench keeps the public facts and the incoming requests. The house questionnaire is for owners. Payment stays on the iPhone.",
+    "roleMissing": "Finish the account and choose owner or contractor. This page does not assume an owner."
+  },
+  "Workbench": {
+    "title": "Contractor workbench",
+    "lede": "These are your public contractor details. Owners send a request. A free account can answer at most two a year. Partner Workbench Pro removes that cap and does not change the order.",
+    "loading": "Loading your details.",
+    "edit": "Edit these details",
+    "closeEdit": "Close editing",
+    "requestsTitle": "Incoming requests",
+    "requestsEmpty": "No request has arrived.",
+    "requestsUnreadable": "Requests could not be read. Nothing is invented in their place.",
+    "capFree": "A free account can give a structured reply to at most 2 requests a year. The website does not take the monthly fee.",
+    "capPro": "Partner Workbench Pro has no yearly cap on requests or structured quotes. The order of contractors does not change.",
+    "capCount": "{count} of {cap} free replies used this year.",
+    "replyNote": "A structured reply stays inside the free yearly cap, or without a cap on Partner Workbench Pro. This page does not calculate a price.",
+    "rankNote": "The order uses only distance, official rank, checked projects, and response time. Buying a higher place is not possible.",
+    "status": {
+      "invited": "Request received",
+      "viewed": "Request opened",
+      "submitted": "Structured reply saved",
+      "declined": "Declined",
+      "other": "Request"
+    }
   },
   "Account": {
     "helpTitle": "How the phone and the website belong together",
@@ -212,6 +239,7 @@
     "scanSignedOut": "This phone is signed out. Enter the password and save, then scan again.",
     "scanExpired": "That code expired. Choose the same role on the website again.",
     "scanOpen": "Open the scanner",
+    "scanAgain": "Scan again",
     "scanDone": "The browser is signed in.",
     "scanFailed": "The sign-in was not confirmed.",
     "camera": "The camera reads only the sign-in code on the KHomeEasy website.",

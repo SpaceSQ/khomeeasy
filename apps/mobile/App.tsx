@@ -418,9 +418,18 @@ export default function App() {
               </Pressable>
               <ModuleHelpLink label={t('Help.moduleLink')} onPress={() => openHelp('account')} />
             </View>
-            <Pressable accessibilityRole="button" style={styles.primary} onPress={() => setScreen('interview')}>
-              <Text style={styles.primaryText}>{t('Guide.start')}</Text>
-            </Pressable>
+            {accountRole === 'installer' ? (
+              <View style={styles.card}>
+                <Text style={styles.body}>{t('Home.installerHome')}</Text>
+                <Pressable accessibilityRole="button" style={styles.primary} onPress={() => setScreen('account')}>
+                  <Text style={styles.primaryText}>{t('Home.installerOpen')}</Text>
+                </Pressable>
+              </View>
+            ) : (
+              <Pressable accessibilityRole="button" style={styles.primary} onPress={() => setScreen('interview')}>
+                <Text style={styles.primaryText}>{t('Guide.start')}</Text>
+              </Pressable>
+            )}
             {pathStages.map((id, index) => {
               const status = id === 'guide' || id === 'examples' ? 'Now' : id === 'work' ? 'Outside' : 'Next';
               return (

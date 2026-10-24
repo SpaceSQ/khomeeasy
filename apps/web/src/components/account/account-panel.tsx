@@ -73,7 +73,15 @@ function isCountry(value: string): value is Country {
   return value === 'DE' || value === 'AT' || value === 'CH' || value === 'GB';
 }
 
-export function AccountPanel({ accessToken, userId }: { accessToken: string; userId: string }) {
+export function AccountPanel({
+  accessToken,
+  userId,
+  onSaved
+}: {
+  accessToken: string;
+  userId: string;
+  onSaved?: (role: Role) => void;
+}) {
   const t = useTranslations('Account');
   const help = useTranslations('Help');
   const login = useTranslations('Login');
@@ -205,6 +213,9 @@ export function AccountPanel({ accessToken, userId }: { accessToken: string; use
       });
       setPending(false);
       setMessage(response.ok ? t('saved') : t('syncFailed'));
+      if (response.ok) {
+        onSaved?.('installer');
+      }
       return;
     }
     const geocoded = await fetch('/api/account/geocode', {
@@ -221,6 +232,7 @@ export function AccountPanel({ accessToken, userId }: { accessToken: string; use
       setPending(false);
       setMatchText(t('matchNone').replace('{unit}', distanceUnitForCountry(draft.countryCode)));
       setMessage(t('saved'));
+      onSaved?.('homeowner');
       return;
     }
     const origin = (await geocoded.json()) as { latitude: number; longitude: number };
@@ -270,6 +282,7 @@ export function AccountPanel({ accessToken, userId }: { accessToken: string; use
     );
     setPending(false);
     setMessage(t('saved'));
+    onSaved?.('homeowner');
   }
 
   return (
