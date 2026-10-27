@@ -15,3 +15,13 @@ coverage
 .DS_Store
 
 supabase/.temp
+
+# Phone app and native projects stay on this machine and are not published.
+/apps/mobile/
+/ios/
+/android/
+*.xcodeproj/
+*.xcworkspace/
+
+# Local copy of the previous website app.
+/.local/
