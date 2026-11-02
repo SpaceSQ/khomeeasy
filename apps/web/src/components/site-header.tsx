@@ -1,9 +1,11 @@
 import { nav, product, publisher } from '@/content/copy';
 
-export type SitePage = 'home' | 'support' | 'privacy' | 'none';
+export type SitePage = 'home' | 'help' | 'order' | 'support' | 'privacy' | 'none';
 
 const links = [
   { id: 'home' as const, href: '/', label: nav.home },
+  { id: 'help' as const, href: '/help#pricing', label: nav.help },
+  { id: 'order' as const, href: '/order', label: nav.order },
   { id: 'support' as const, href: '/support', label: nav.support },
   { id: 'privacy' as const, href: '/privacy', label: nav.privacy }
 ];

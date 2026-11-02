@@ -16,8 +16,10 @@ export const nav = {
   skip: 'Skip to content',
   label: 'Pages',
   home: 'Home',
+  help: 'Help',
   support: 'Support',
-  privacy: 'Privacy'
+  privacy: 'Privacy',
+  order: 'Order'
 } as const;
 
 export const footer = {
@@ -358,8 +360,78 @@ export const missing = {
   kicker: 'Missing',
   heading: 'This page does not exist.',
   lede: {
-    en: 'The link does not lead to a KHomeEasy page. Home, Support, and Privacy are the pages on this site.',
-    de: 'Der Link führt nicht zu einer KHomeEasy-Seite. Start, Support und Datenschutz sind die Seiten dieser Website.'
+    en: 'The link does not lead to a KHomeEasy page. Home, Help, Support, and Privacy are the pages on this site.',
+    de: 'Der Link führt nicht zu einer KHomeEasy-Seite. Start, Hilfe, Support und Datenschutz sind die Seiten dieser Website.'
   },
   home: 'Home'
 } as const;
+
+export const helpPage = {
+  kicker: 'Help',
+  heading: { en: 'Help', de: 'Hilfe' },
+  lede: {
+    en: 'Short answers for owners and contractors. Payment happens only on the iPhone through Apple.',
+    de: 'Kurze Antworten für Eigentümer und Fachbetriebe. Die Zahlung läuft nur auf dem iPhone über Apple.'
+  },
+  pricing: {
+    en: 'Free and paid',
+    de: 'Kostenlos und kostenpflichtig',
+    body: {
+      en: 'Owners pay Apple for one non-consumable Project Pro Pass (product id com.zhijia.khomeeasy.pro_pass), shown as €79.99. The price Apple shows at checkout is the price that applies. The pass unlocks the bilingual PDF request (including the ETS file and .knxkeys handover clause), comparison of up to three structured quotes, and the contract and handover checklist. Contractors stay permanently free: no subscription, no commission, no yearly cap. This website does not take payment. Unlock is stored on the iPhone first; a website account is optional and only binds the receipt later.',
+      de: 'Eigentümer zahlen bei Apple für ein nicht verbrauchbares Produkt, den Project Pro Pass (Produkt-ID com.zhijia.khomeeasy.pro_pass), angezeigt mit €79.99. Der Preis auf der Kassenseite von Apple gilt. Der Pass schaltet die zweisprachige PDF-Anfrage frei (einschließlich der Klausel zur ETS-Datei und zur .knxkeys-Datei), den Vergleich von bis zu drei strukturierten Angeboten und die Liste für Vertrag und Übergabe. Fachbetriebe bleiben dauerhaft kostenlos: kein Abonnement, keine Provision, keine Jahresgrenze. Diese Website nimmt keine Zahlung entgegen. Die Freischaltung liegt zuerst auf dem iPhone; ein Website-Konto ist optional und bindet den Beleg später.'
+    },
+    note: {
+      en: '€79.99 is the fixed owner product price. No calculation and no language model sets it. Checked on 24 October 2026.',
+      de: '79,99 Euro sind der festgelegte Produktpreis für Eigentümer. Kein Rechenlauf und kein Sprachmodell setzt ihn. Geprüft am 24. Oktober 2026.'
+    },
+    ownerTitle: { en: 'Owner', de: 'Eigentümer' },
+    installerTitle: { en: 'Contractor', de: 'Fachbetrieb' },
+    free: { en: 'Free', de: 'Kostenlos' },
+    paid: { en: 'Project Pro Pass', de: 'Project Pro Pass' },
+    ownerFree: {
+      en: [
+        'Eight fit questions with sources',
+        'Comparison without an overall score',
+        'Functions per room',
+        'Published house range (not a quote)',
+        'Reference cases',
+        'A draft saved on this device'
+      ],
+      de: [
+        'Acht Eignungsfragen mit Quellen',
+        'Vergleich ohne Gesamtwert',
+        'Funktionen je Raum',
+        'Veröffentlichte Hausspanne (kein Angebot)',
+        'Referenzfälle',
+        'Entwurf auf diesem Gerät'
+      ]
+    },
+    ownerPaid: {
+      en: [
+        'Bilingual PDF request with ETS / .knxkeys handover clause',
+        'Up to three structured quotes and follow-up questions',
+        'Contract points and final deliverables checklist'
+      ],
+      de: [
+        'Zweisprachige PDF-Anfrage mit ETS- / .knxkeys-Übergabeklausel',
+        'Bis zu drei strukturierte Angebote und Rückfragen',
+        'Vertragspunkte und Checkliste der Endlieferungen'
+      ]
+    },
+    installerItems: {
+      en: [
+        'Claim a profile and correct facts',
+        'Direct requests from owners',
+        'Reply in a structured form',
+        'Optional paid boost in the list — never required'
+      ],
+      de: [
+        'Profil beanspruchen und Fakten korrigieren',
+        'Direkte Anfragen von Eigentümern',
+        'Antwort im strukturierten Formular',
+        'Optionale bezahlte Listenplatzierung — nie Pflicht'
+      ]
+    }
+  }
+};
+
